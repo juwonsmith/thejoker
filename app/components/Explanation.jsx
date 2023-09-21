@@ -10,9 +10,9 @@ export default function Explanation() {
   const Errory = usejokeStore(useStore, (state) => state.error);
   const setError = useStore((state) => state.setError);
 
-  useEffect(() => {
-    setError(false);
-  }, []);
+  // useEffect(() => {
+  //   setError(false);
+  // }, []);
   return (
     <>
       <div
