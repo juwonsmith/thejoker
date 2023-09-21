@@ -71,13 +71,13 @@ export default function Form() {
         </button>
         <button
           className="text-white bg-gradient-to-l hover:animate-pulse  from-purple-500 to-gray-300 p-4 font-mono rounded-md  hover:text-black"
-          onClick={() => handleClear()}
+          onClick={handleClear}
         >
           clear
         </button>
         <button
           className="text-white bg-gradient-to-l hover:animate-pulse  from-purple-500 to-gray-300 p-4 font-mono rounded-md  hover:text-black"
-          onClick={() => handleTest()}
+          onClick={handleTest}
         >
           Test run
         </button>
