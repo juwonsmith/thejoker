@@ -14,7 +14,7 @@ export const useStore = create(
       setError: (data) => set({ error: data }),
     }),
     {
-      name: "explained", // name of the item in the storage (must be unique)
+      name: "theJokerStore", // name of the item in the storage (must be unique)
     }
   )
 );
