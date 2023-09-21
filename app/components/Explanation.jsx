@@ -6,7 +6,7 @@ import { useEffect } from "react";
 
 export default function Explanation() {
   const joke1 = usejokeStore(useStore, (state) => state.data);
-  const ispending = usejokeStore(useStore, (state) => state.ispending);
+  const isPending = usejokeStore(useStore, (state) => state.isPending);
   const Errory = usejokeStore(useStore, (state) => state.error);
   const setError = useStore((state) => state.setError);
 
@@ -26,12 +26,12 @@ export default function Explanation() {
             <span className="text-white">An error occured</span>
           </p>
         )}
-        {ispending && (
+        {isPending && (
           <p className="font-mono h-max overflow-y-scroll no-scrollbar">
             <span className="text-black">loading...explaining... </span>
           </p>
         )}
-        {joke1 && !ispending && (
+        {joke1 && !isPending && (
           <p className="font-mono h-max overflow-y-scroll no-scrollbar">
             <span className="text-black">Explanation:</span> {joke1}
           </p>

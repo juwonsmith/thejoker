@@ -6,11 +6,11 @@ export const useStore = create(
     (set) => ({
       data: "",
       originJoke: null,
-      ispending: null,
+      isPending: null,
       error: null,
       addOrigin: (joke) => set({ originJoke: joke }),
       addJoke: (joke) => set({ data: joke }),
-      setIspending: (data) => set({ ispending: data }),
+      setIsPending: (data) => set({ isPending: data }),
       setError: (data) => set({ error: data }),
     }),
     {

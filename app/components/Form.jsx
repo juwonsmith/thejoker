@@ -8,17 +8,17 @@ import OpenAI from "openai";
 import { useState } from "react";
 
 export default function Form() {
-  const [joke, setjoke] = useState("");
+  const [joke, setJoke] = useState("");
   const addJoke = useStore((state) => state.addJoke);
   const addOrigin = useStore((state) => state.addOrigin);
   const originJoke = usejokeStore(useStore, (state) => state.originJoke);
-  const setIspending = useStore((state) => state.setIspending);
+  const setIsPending = useStore((state) => state.setIsPending);
   const setError = useStore((state) => state.setError);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     addOrigin(joke);
-    setIspending(true);
+    setIsPending(true);
     setError(false);
     const openai = new OpenAI({
       apiKey: process.env.NEXT_PUBLIC_API_KEY,
@@ -31,22 +31,22 @@ export default function Form() {
         model: "gpt-3.5-turbo",
       })
       .catch(() => {
-        setIspending(false);
+        setIsPending(false);
         setError(true);
       });
 
     const dataexplained = chatCompletion;
 
     addJoke(dataexplained.choices[0].message.content);
-    setIspending(false);
+    setIsPending(false);
     setError(false);
   };
 
   const handleClear = () => {
-    setjoke("");
+    setJoke("");
   };
   const handleTest = () => {
-    setjoke("What do you call a fake noodle? An impasta.");
+    setJoke("What do you call a fake noodle? An impasta.");
   };
 
   return (
@@ -61,7 +61,7 @@ export default function Form() {
         }
         className="w-[calc(100%-10em)] h-32 resize-none outline-black font-nunito p-2"
         required
-        onChange={(e) => setjoke(e.target.value)}
+        onChange={(e) => setJoke(e.target.value)}
         value={joke}
         maxLength={1000}
       ></textarea>
