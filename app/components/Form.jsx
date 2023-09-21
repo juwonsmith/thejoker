@@ -21,7 +21,7 @@ export default function Form() {
     setIsPending(true);
     setError(false);
     const openai = new OpenAI({
-      apiKey: process.env.NEXT_PUBLIC_API_KEY,
+      apiKey: process.env.NEXT_PUBLIC_OPEN_API_KEY,
       dangerouslyAllowBrowser: true,
     });
 
