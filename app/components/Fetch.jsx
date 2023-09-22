@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useStore } from "../store/zustand";
-import usejokeStore from "../store/usejokestore";
+import usejokeStore from "../store/useJokeStore";
 
 export default function Fetch() {
   const [jokes, setJokes] = useState(null);
