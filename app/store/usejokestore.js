@@ -1,7 +1,6 @@
-// useStore.ts
 import { useState, useEffect } from "react";
 
-const usejokeStore = (store, callback) => {
+const useJokeStore = (store, callback) => {
   const result = store(callback);
   const [data, setData] = useState();
 
@@ -12,4 +11,4 @@ const usejokeStore = (store, callback) => {
   return data;
 };
 
-export default usejokeStore;
+export default useJokeStore;

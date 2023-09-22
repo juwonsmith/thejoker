@@ -1,7 +1,7 @@
 "use client";
 //store imports
 import { useStore } from "../store/zustand";
-import usejokeStore from "../store/usejokestore";
+import useJokeStore from "../store/useJokeStore";
 
 //natives
 import OpenAI from "openai";
@@ -11,7 +11,7 @@ export default function Form() {
   const [joke, setJoke] = useState("");
   const addJoke = useStore((state) => state.addJoke);
   const addOrigin = useStore((state) => state.addOrigin);
-  const originJoke = usejokeStore(useStore, (state) => state.originJoke);
+  const originJoke = useJokeStore(useStore, (state) => state.originJoke);
   const setIsPending = useStore((state) => state.setIsPending);
   const setError = useStore((state) => state.setError);
 

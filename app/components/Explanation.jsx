@@ -1,13 +1,13 @@
 "use client";
 //store imports
 import { useStore } from "../store/zustand";
-import usejokeStore from "../store/usejokestore";
+import useJokeStore from "../store/useJokeStore";
+
 
 export default function Explanation() {
-  const joke1 = usejokeStore(useStore, (state) => state.data);
-  const isPending = usejokeStore(useStore, (state) => state.isPending);
-  const Errory = usejokeStore(useStore, (state) => state.error);
-  const setError = useStore((state) => state.setError);
+  const joke1 = useJokeStore(useStore, (state) => state.data);
+  const isPending = useJokeStore(useStore, (state) => state.isPending);
+  const Errory = useJokeStore(useStore, (state) => state.error);
 
   return (
     <>
