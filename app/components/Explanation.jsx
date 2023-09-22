@@ -2,7 +2,6 @@
 //store imports
 import { useStore } from "../store/zustand";
 import usejokeStore from "../store/usejokestore";
-import { useEffect } from "react";
 
 export default function Explanation() {
   const joke1 = usejokeStore(useStore, (state) => state.data);
@@ -10,9 +9,6 @@ export default function Explanation() {
   const Errory = usejokeStore(useStore, (state) => state.error);
   const setError = useStore((state) => state.setError);
 
-  // useEffect(() => {
-  //   setError(false);
-  // }, []);
   return (
     <>
       <div
