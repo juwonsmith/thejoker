@@ -4,12 +4,12 @@ import { persist } from "zustand/middleware";
 export const useStore = create(
   persist(
     (set) => ({
-      data: "",
-      originJoke: null,
+      Joke: "",
+      lastJokeInput: null,
       isPending: null,
       error: null,
-      addOrigin: (joke) => set({ originJoke: joke }),
-      addJoke: (joke) => set({ data: joke }),
+      addOrigin: (joke) => set({ lastJokeInput: joke }),
+      addJoke: (joke) => set({ joke }),
       setIsPending: (data) => set({ isPending: data }),
       setError: (data) => set({ error: data }),
     }),
