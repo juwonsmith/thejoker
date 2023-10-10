@@ -19,10 +19,10 @@ export default function Fetch() {
       ).catch(() => {
         setError(true);
       });
-
       res.json().then((data) => setJokes(data));
     };
     getJokes();
+
     let interval = setInterval(() => {
       getJokes();
     }, 8000);
@@ -31,19 +31,18 @@ export default function Fetch() {
       clearInterval(interval);
     };
   }, []);
-
   return (
     <>
+      {jokes && (
+        <div className="text-white font-nunito text-center">
+          <p>{jokes.setup}</p>
+          <p>{jokes.punchline}</p>
+        </div>
+      )}
       {error && (
         <p className="text-white font-nunito text-center">
           failed to fetch data
         </p>
-      )}
-      {jokes && !error && (
-        <div className="text-white font-nunito text-center  ">
-          <p>{jokes.setup}</p>
-          <p>{jokes.punchline}</p>
-        </div>
       )}
     </>
   );

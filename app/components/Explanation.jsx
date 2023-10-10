@@ -3,9 +3,8 @@
 import { useStore } from "../store/zustand";
 import useJokeStore from "../store/useJokeStore";
 
-
 export default function Explanation() {
-  const joke1 = useJokeStore(useStore, (state) => state.data);
+  const joke1 = useJokeStore(useStore, (state) => state.joke);
   const isPending = useJokeStore(useStore, (state) => state.isPending);
   const Errory = useJokeStore(useStore, (state) => state.error);
 

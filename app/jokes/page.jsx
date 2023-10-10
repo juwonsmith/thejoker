@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import Fetch from "../components/Fetch";
+import FetchJokes from "../components/FetchJokes";
 import { Suspense } from "react";
 import Loading from "../Loading";
 
@@ -14,7 +14,7 @@ export default function page() {
       </Link>
       <div className="w-[calc(100%-10em)] rounded-3xl flex p-6 flex-col items-center justify-center bg-gradient-to-tr  from-purple-500 to-gray-950 h-max drop-shadow-lg shadow-md shadow-slate-300  mt-12">
         <Suspense fallback={<Loading />}>
-          <Fetch />
+          <FetchJokes />
         </Suspense>
       </div>
     </div>

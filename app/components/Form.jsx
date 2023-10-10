@@ -11,7 +11,7 @@ export default function Form() {
   const [joke, setJoke] = useState("");
   const addJoke = useStore((state) => state.addJoke);
   const addOrigin = useStore((state) => state.addOrigin);
-  const originJoke = useJokeStore(useStore, (state) => state.originJoke);
+  const originJoke = useJokeStore(useStore, (state) => state.lastJokeInput);
   const setIsPending = useStore((state) => state.setIsPending);
   const setError = useStore((state) => state.setError);
 
