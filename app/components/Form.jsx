@@ -11,7 +11,7 @@ export default function Form() {
   const [joke, setJoke] = useState("");
   const addJoke = useStore((state) => state.addJoke);
   const addOrigin = useStore((state) => state.addOrigin);
-  const originJoke = useJokeStore(useStore, (state) => state.lastJokeInput);
+  const lastJokeInput = useJokeStore(useStore, (state) => state.lastJokeInput);
   const setIsPending = useStore((state) => state.setIsPending);
   const setError = useStore((state) => state.setError);
 
@@ -57,7 +57,9 @@ export default function Form() {
       <textarea
         name="description"
         placeholder={
-          originJoke ? `Last joke: ${originJoke}` : "Write your joke here."
+          lastJokeInput
+            ? `Last joke: ${lastJokeInput}`
+            : "Write your joke here."
         }
         className="w-[calc(100%-10em)] h-32 resize-none outline-black font-nunito p-2"
         required

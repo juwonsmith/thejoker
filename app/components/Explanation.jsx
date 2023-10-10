@@ -4,9 +4,9 @@ import { useStore } from "../store/zustand";
 import useJokeStore from "../store/useJokeStore";
 
 export default function Explanation() {
-  const joke1 = useJokeStore(useStore, (state) => state.joke);
+  const joke = useJokeStore(useStore, (state) => state.joke);
   const isPending = useJokeStore(useStore, (state) => state.isPending);
-  const Errory = useJokeStore(useStore, (state) => state.error);
+  const hasError = useJokeStore(useStore, (state) => state.error);
 
   return (
     <>
@@ -16,7 +16,7 @@ export default function Explanation() {
         to-gray-950 justify-center rounded-2xl font-nunito h-max  p-8 pt-8
          drop-shadow-lg shadow-lg shadow-slate-500 overflow-y-auto  text-justify"
       >
-        {Errory && (
+        {hasError && (
           <p className="font-mono ">
             <span className="text-white">An error occured</span>
           </p>
@@ -26,7 +26,7 @@ export default function Explanation() {
             <span className="text-black">loading...explaining... </span>
           </p>
         )}
-        {joke1 && !isPending && (
+        {joke && !isPending && (
           <p className="font-mono h-max overflow-y-scroll no-scrollbar">
             <span className="text-black">Explanation:</span> {joke1}
           </p>

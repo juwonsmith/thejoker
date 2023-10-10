@@ -4,7 +4,7 @@ import { persist } from "zustand/middleware";
 export const useStore = create(
   persist(
     (set) => ({
-      Joke: "",
+      joke: "",
       lastJokeInput: null,
       isPending: null,
       error: null,
