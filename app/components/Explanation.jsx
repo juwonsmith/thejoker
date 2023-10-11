@@ -28,7 +28,7 @@ export default function Explanation() {
         )}
         {joke && !isPending && (
           <p className="font-mono h-max overflow-y-scroll no-scrollbar">
-            <span className="text-black">Explanation:</span> {joke1}
+            <span className="text-black">Explanation:</span> {joke}
           </p>
         )}
       </div>
