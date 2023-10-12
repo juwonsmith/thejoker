@@ -3,47 +3,32 @@
 import { useEffect, useState } from "react";
 import { useStore } from "../store/zustand";
 import usejokeStore from "../store/useJokeStore";
+import JokeView from "./JokeView";
 
-export default function Fetch() {
+const FetchJokes = async () => {
   const [jokes, setJokes] = useState(null);
   const setError = useStore((state) => state.setError);
   const error = usejokeStore(useStore, (state) => state.error);
-  useEffect(() => {
-    const getJokes = async () => {
-      setError(false);
-      const res = await fetch(
-        "https://official-joke-api.appspot.com/random_joke",
-        {
-          next: { revalidate: 0 },
-        }
-      ).catch(() => {
-        setError(true);
-      });
-      res.json().then((data) => setJokes(data));
-    };
-    getJokes();
+  setError(false);
+  const res = await fetch("https://official-joke-api.appspot.com/random_joke", {
+    next: { revalidate: 0 },
+  }).catch(() => {
+    setError(true);
+  });
+  res.json().then((data) => setJokes(data));
+  return jokes, error;
+};
 
+export default function FetchJokesEvery8Seconds() {
+  const [jokes, error] = FetchJokes();
+  useEffect(() => {
     let interval = setInterval(() => {
-      getJokes();
+      FetchJokes();
     }, 8000);
 
     return () => {
       clearInterval(interval);
     };
   }, []);
-  return (
-    <>
-      {jokes && (
-        <div className="text-white font-nunito text-center">
-          <p>{jokes.setup}</p>
-          <p>{jokes.punchline}</p>
-        </div>
-      )}
-      {error && (
-        <p className="text-white font-nunito text-center">
-          failed to fetch data
-        </p>
-      )}
-    </>
-  );
+  return <JokeView jokes={jokes} error={error} />;
 }
