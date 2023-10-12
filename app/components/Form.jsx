@@ -34,10 +34,7 @@ export default function Form() {
         setIsPending(false);
         setError(true);
       });
-
-    const dataexplained = chatCompletion;
-
-    addJoke(dataexplained.choices[0].message.content);
+    addJoke(chatCompletion.choices[0].message.content);
     setIsPending(false);
     setError(false);
   };
