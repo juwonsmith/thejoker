@@ -6,6 +6,7 @@ import useJokeStore from "../store/useJokeStore";
 //natives
 import OpenAI from "openai";
 import { useState } from "react";
+import { data } from "autoprefixer";
 
 export default function Form() {
   const [joke, setJoke] = useState("");
@@ -15,11 +16,7 @@ export default function Form() {
   const setIsPending = useStore((state) => state.setIsPending);
   const setError = useStore((state) => state.setError);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    addOrigin(joke);
-    setIsPending(true);
-    setError(false);
+  const getExplanation = async () => {
     const openai = new OpenAI({
       apiKey: process.env.NEXT_PUBLIC_OPEN_API_KEY,
       dangerouslyAllowBrowser: true,
@@ -27,16 +24,30 @@ export default function Form() {
 
     const chatCompletion = await openai.chat.completions
       .create({
-        messages: [{ role: "user", content: `explain this joke: ${joke}` }],
+        messages: [
+          {
+            role: "user",
+            content: `explain this joke: ${joke}`,
+          },
+        ],
         model: "gpt-3.5-turbo",
       })
       .catch(() => {
         setIsPending(false);
         setError(true);
       });
-    addJoke(chatCompletion.choices[0].message.content);
-    setIsPending(false);
-    setError(false);
+
+    return chatCompletion.choices[0].message.content;
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    addOrigin(joke);
+    setIsPending(true);
+    getExplanation().then((data) => {
+      addJoke(data);
+      setIsPending(false);
+    });
   };
 
   const handleClear = () => {

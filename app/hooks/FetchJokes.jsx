@@ -25,9 +25,7 @@ export function useFetchJokesEvery8Seconds() {
     fetchJoke()
       .then((data) => {
         setJoke(data);
-        if (isPending) {
-          setIsPending(false); // Set to false only if it's still true
-        }
+        setIsPending(false);
       })
       .catch(() => {
         setError(true);
