@@ -1,8 +1,4 @@
-"use client";
-
-import { useEffect, useState } from "react";
-import { useStore } from "../store/zustand";
-import usejokeStore from "../store/useJokeStore";
+import { useEffect, useState, useRef } from "react";
 
 async function fetchJoke() {
   const response = await fetch(
@@ -19,22 +15,29 @@ async function fetchJoke() {
 
 export function useFetchJokesEvery8Seconds() {
   const [joke, setJoke] = useState(null);
-  const setError = useStore((state) => state.setError);
-  const error = usejokeStore(useStore, (state) => state.error);
+  const [error, setError] = useState(null);
+  const [isPending, setIsPending] = useState(null);
+
+  // track whether isPending has been set to false
+  const isPendingSet = useRef(false);
 
   const fetchAndSetJoke = () => {
     setError(false);
-
     fetchJoke()
       .then((data) => {
         setJoke(data);
+        if (!isPendingSet.current) {
+          setIsPending(false);
+          isPendingSet.current = true; // Set  ref to true
+        }
       })
-      .catch((error) => {
+      .catch(() => {
         setError(true);
       });
   };
 
   useEffect(() => {
+    setIsPending(true);
     fetchAndSetJoke();
 
     let interval = setInterval(() => {
@@ -46,5 +49,5 @@ export function useFetchJokesEvery8Seconds() {
     };
   }, []);
 
-  return [joke, error];
+  return [joke, error, isPending];
 }
