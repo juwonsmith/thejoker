@@ -1,10 +1,10 @@
-export default function JokeView({ jokes, error }) {
+export default function JokeView({ joke, error }) {
   return (
     <>
-      {jokes && (
+      {joke && (
         <div className="text-white font-nunito text-center">
-          <p>{jokes.setup}</p>
-          <p>{jokes.punchline}</p>
+          <p>{joke.setup}</p>
+          <p>{joke.punchline}</p>
         </div>
       )}
       {error && (
