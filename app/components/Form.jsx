@@ -6,7 +6,6 @@ import useJokeStore from "../store/useJokeStore";
 //natives
 import OpenAI from "openai";
 import { useState } from "react";
-import { data } from "autoprefixer";
 
 export default function Form() {
   const [joke, setJoke] = useState("");
