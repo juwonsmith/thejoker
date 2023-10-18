@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import { useStore } from "../store/zustand";
 import usejokeStore from "../store/useJokeStore";
-import JokeView from "./JokeView";
 
 async function fetchJoke() {
   const response = await fetch(
@@ -18,17 +17,17 @@ async function fetchJoke() {
   return await response.json();
 }
 
-export default function FetchJokesEvery8Seconds() {
-  const [jokes, setJokes] = useState(null);
+export function useFetchJokesEvery8Seconds() {
+  const [joke, setJoke] = useState(null);
   const setError = useStore((state) => state.setError);
   const error = usejokeStore(useStore, (state) => state.error);
 
-  const getJokes = () => {
+  const fetchAndSetJoke = () => {
     setError(false);
 
     fetchJoke()
       .then((data) => {
-        setJokes(data);
+        setJoke(data);
       })
       .catch((error) => {
         setError(true);
@@ -36,10 +35,10 @@ export default function FetchJokesEvery8Seconds() {
   };
 
   useEffect(() => {
-    getJokes();
+    fetchAndSetJoke();
 
     let interval = setInterval(() => {
-      getJokes();
+      fetchAndSetJoke();
     }, 8000);
 
     return () => {
@@ -47,5 +46,5 @@ export default function FetchJokesEvery8Seconds() {
     };
   }, []);
 
-  return <JokeView jokes={jokes} error={error} />;
+  return [joke, error];
 }
