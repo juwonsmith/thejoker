@@ -15,26 +15,21 @@ export default function Form() {
   const setIsPending = useStore((state) => state.setIsPending);
   const setError = useStore((state) => state.setError);
 
-  const getExplanation = async () => {
+  const getJokeExplanation = async () => {
     const openai = new OpenAI({
       apiKey: process.env.NEXT_PUBLIC_OPEN_API_KEY,
       dangerouslyAllowBrowser: true,
     });
 
-    const chatCompletion = await openai.chat.completions
-      .create({
-        messages: [
-          {
-            role: "user",
-            content: `explain this joke: ${joke}`,
-          },
-        ],
-        model: "gpt-3.5-turbo",
-      })
-      .catch(() => {
-        setIsPending(false);
-        setError(true);
-      });
+    const chatCompletion = await openai.chat.completions.create({
+      messages: [
+        {
+          role: "user",
+          content: `explain this joke: ${joke}`,
+        },
+      ],
+      model: "gpt-3.5-turbo",
+    });
 
     return chatCompletion.choices[0].message.content;
   };
@@ -43,10 +38,15 @@ export default function Form() {
     e.preventDefault();
     addOrigin(joke);
     setIsPending(true);
-    getExplanation().then((data) => {
-      addJoke(data);
-      setIsPending(false);
-    });
+    getJokeExplanation()
+      .then((data) => {
+        addJoke(data);
+        setIsPending(false);
+      })
+      .catch(() => {
+        setIsPending(false);
+        setError(true);
+      });
   };
 
   const handleClear = () => {
