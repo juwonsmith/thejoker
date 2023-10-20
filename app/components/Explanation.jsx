@@ -1,7 +1,7 @@
 "use client";
 //store imports
 import { useStore } from "../store/zustand";
-import useJokeStore from "../store/useJokeStore";
+import useJokeStore from "../store/usejokestore";
 
 export default function Explanation() {
   const joke = useJokeStore(useStore, (state) => state.joke);

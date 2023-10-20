@@ -1,8 +1,7 @@
 "use client";
 //store imports
 import { useStore } from "../store/zustand";
-import useJokeStore from "../store/useJokeStore";
-
+import useJokeStore from "../store/usejokestore";
 //natives
 import OpenAI from "openai";
 import { useState } from "react";
