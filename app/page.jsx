@@ -13,7 +13,7 @@ export default function Home() {
         hover:bg-gradient-to-tr hover:from-slate-100 hover:to-slate-700 flex items-center
          justify-center rounded-md font-mono cursor-pointer"
         >
-          <span className="">Jokes</span>
+          <span className="">jokes</span>
         </div>
       </Link>
       <Form />
