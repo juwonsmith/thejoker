@@ -25,7 +25,7 @@ export default function Form() {
       messages: [
         {
           role: "user",
-          content: `explain this joke: ${joke}`,
+          content: `Explain this joke: ${joke}`,
         },
       ],
       model: "gpt-3.5-turbo",
