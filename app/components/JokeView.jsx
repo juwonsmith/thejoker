@@ -3,7 +3,7 @@ export default function JokeView({ joke, error, isPending }) {
     <>
       {isPending && (
         <p className="text-green-400  font-nunito text-center">
-          Loading jokes...
+          Loading jokes....
         </p>
       )}
       {joke && !isPending && (
